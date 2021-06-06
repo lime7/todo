@@ -1,0 +1,183 @@
+// Base
+
+a[href*="mailto:"],
+a[href*="tel:"] {
+  white-space: nowrap;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transition: $bg-transition;  
+
+  height: $btn-height;
+
+  &-lg {
+    height: $btn-lg-height;
+  }
+
+  &-circle {
+    width: $btn-height;
+  }
+
+  &-link {
+    font-weight: $btn-font-weight;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.btn-light {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $white, 
+    $white, 
+    $gray-800, 
+    $component-active-bg, 
+    $component-active-bg,
+    $white,
+    $green-500, 
+    $green-500,
+    $white);
+  box-shadow: 7px 7px 17px rgba(0, 18, 39, 0.1);
+
+  &:hover {
+    box-shadow: 7px 7px 17px rgba($green-300, 0.75);
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.btn-success {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $green, 
+    $green, 
+    $white, 
+    $green-500, 
+    $green-500,
+    $white,
+    $green-500, 
+    $green-500,
+    $white);
+  @include gradient-bg($green);
+  @include gradient-y($green-300, $green);
+  box-shadow: 0px 7px 17px rgba($green-300, 0.75);
+
+  &:hover {
+    @include gradient-bg($green-500);
+    @include gradient-y($green-100, $green-500);
+    box-shadow: 0px 7px 17px rgba($green-300, 0.75);
+  }
+
+  &:focus {
+    @include gradient-bg($green-300);
+    @include gradient-y($green, $green-300);
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.btn-outline-success {
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $white, 
+    $green, 
+    $body-color, 
+    $green-500, 
+    $green-500,
+    $white,
+    $green-500, 
+    $green-500,
+    $white);
+  box-shadow: none;
+
+  &:hover {
+    @include gradient-bg($green-500);
+    @include gradient-y($green-100, $green-500);
+    box-shadow: 0px 7px 17px rgba($green-300, 0.75);
+  }
+
+  &:focus {
+    @include gradient-bg($green-300);
+    @include gradient-y($green, $green-300);
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.bg-primary {
+  @include gradient-bg($primary);
+  @include gradient-y($blue-300, $blue-500);
+  box-shadow: 7px 7px 17px rgba($blue-300, .75);
+  transition: $bg-transition;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    background: $primary;
+    box-shadow: none;
+  }
+}
+
+.form-check {
+  min-height: auto;
+}
+
+.form-check-input {
+  background-size: 65% 65%;
+  cursor: pointer;
+  margin-top: 0;  
+}
+
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+::-webkit-scrollbar {
+  width: $spacer / 3;
+  border-radius: $spacer / 3;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($body-color, .1); 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgba($gray-800, .5); 
+  border-radius: $spacer / 3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $gray-800; 
+}
