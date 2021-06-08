@@ -48,6 +48,29 @@
                 placeholder="Text...">
               </textarea>
             </div>
+            <div
+              class="btn-group justify-content-between colors"
+              role="group"
+              aria-label="Colors radiobox toggle button group">
+              <div
+                v-for="color in colors"
+                :key="color.value">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  :id="color.value"
+                  :value="color.value"
+                  v-model="colorChecked"
+                  :checked="color.checked">
+                <label
+                  :class="'btn btn-' + color.value"
+                  :for="color.value">
+                    {{ color.value }}
+                </label>
+              </div>
+
+              {{ colorChecked }}
+            </div>
           </div>
           <div class="modal-footer d-block">
             <button
@@ -93,22 +116,32 @@ export default {
     return {
       task: {
         title: '',
-        note: ''
-      }
+        note: '',
+        color: this.$store.state.colorChecked
+      },
+      colors: this.$store.state.colors,
+      colorChecked: this.$store.state.colorChecked
     }
   },
   methods: {
-    ...mapActions(['addTodo']),
+    ...mapActions(['addTodo', 'fetchColorChecked']),
     onSubmit (e) {
       e.preventDefault()
 
       this.addTodo(this.task)
       this.task.title = ''
       this.task.note = ''
+      this.task.color = this.$store.state.colorChecked
     },
     onReset () {
       this.task.title = ''
       this.task.note = ''
+      this.task.color = this.$store.state.colorChecked
+    }
+  },
+  watch: {
+    colorChecked (value) {
+      this.fetchColorChecked(value)
     }
   }
 }

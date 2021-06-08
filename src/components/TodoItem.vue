@@ -23,8 +23,7 @@
       </div>
 
       <div
-        class="card-body text-white bg-primary bg-gradient"
-        v-bind:class="{'active' : todo.completed }">
+        :class="['card-body text-white bg-gradient bg-' + todo.color , { 'active' : todo.completed }]">
         <div
           class="card-inner"
           type="button"
@@ -92,7 +91,7 @@
               </div>
 
               <div class="text-secondary">
-                id: {{ todo.id }} | completed: {{ todo.completed }}
+                id: {{ todo.id }} | completed: {{ todo.completed }} | color: {{ todo.color }}
               </div>
             </div>
           </div>
@@ -152,12 +151,34 @@
                     :value="task.title"
                     v-on:input="onInputTitle">
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                   <input
                     type="text"
                     class="form-control"
                     :value="task.note"
                     v-on:input="onInputNote">
+              </div>
+              <div
+                class="btn-group justify-content-between colors"
+                role="group"
+                aria-label="Colors radiobox toggle button group">
+                <!-- <div
+                  v-for="color in colors"
+                  :key="color.value">
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    :id="color.value"
+                    :value="color.value"
+                    v-model="task.color">
+                  <label
+                    :class="'btn btn-' + color.value"
+                    :for="color.value">
+                      {{ color.value }}
+                  </label>
+                </div> -->
+
+                {{ task.color }}
               </div>
             </div>
           </div>
@@ -277,12 +298,15 @@ export default {
       settings: false,
       task: {
         title: this.todo.title,
-        note: this.todo.note
+        note: this.todo.note,
+        color: this.$store.state.colorChecked
       }
+      // colors: this.$store.state.colors,
+      // colorChecked: this.$store.state.colorChecked
     }
   },
   methods: {
-    ...mapActions(['toggleStatus', 'removeTodo', 'editTodo', 'saveEditTodo']),
+    ...mapActions(['toggleStatus', 'removeTodo', 'editTodo', 'saveEditTodo', 'fetchColorChecked']),
     handleStatus (e) {
       this.$emit('change', e.target.value, this.status)
     },
@@ -298,6 +322,11 @@ export default {
     saveEdit () {
       this.saveEditTodo(this.task)
       this.settings = false
+    }
+  },
+  watch: {
+    colorChecked (value) {
+      this.fetchColorChecked(value)
     }
   }
 }
