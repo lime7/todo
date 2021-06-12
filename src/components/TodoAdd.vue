@@ -68,8 +68,6 @@
                     {{ color.value }}
                 </label>
               </div>
-
-              {{ task.color }}
             </div>
           </div>
           <div class="modal-footer d-block">
