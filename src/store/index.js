@@ -16,7 +16,8 @@ export default createStore({
       { value: 'orange', checked: false },
       { value: 'red', checked: false }
     ],
-    colorChecked: 'blue'
+    colorChecked: 'blue',
+    settings: false
   },
   getters: {
     getTodos (state) {
@@ -53,11 +54,13 @@ export default createStore({
 
       lS.save(state.todos || [])
     },
+    setSettings (state) {
+      state.settings = !state.settings
+    },
     setFilter (state, payload) {
       state.selected = payload
     },
     setColorChecked (state, payload) {
-      console.log(payload)
       state.colorChecked = payload
     },
     setRemoveTodo (state, payload) {
@@ -71,7 +74,7 @@ export default createStore({
         title: payload.title,
         note: payload.note,
         completed: false,
-        color: state.colorChecked
+        color: payload.color
       }
 
       state.limit++
@@ -86,6 +89,8 @@ export default createStore({
       state.editedTodo.title = payload.title
       state.editedTodo.note = payload.note
       state.editedTodo.color = payload.color
+
+      lS.save(state.todos || [])
     },
     setSearch (state, payload) {
       state.searchTodo = payload
@@ -107,6 +112,9 @@ export default createStore({
     // },
     async toggleStatus ({ commit }, todo) {
       this.commit('setStatus', todo)
+    },
+    toggleSettings ({ commit }) {
+      this.commit('setSettings')
     },
     fetchFilter ({ commit }, value) {
       this.commit('setFilter', value)

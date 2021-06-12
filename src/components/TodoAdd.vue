@@ -60,7 +60,7 @@
                   class="btn-check"
                   :id="color.value"
                   :value="color.value"
-                  v-model="colorChecked"
+                  v-model="task.color"
                   :checked="color.checked">
                 <label
                   :class="'btn btn-' + color.value"
@@ -69,7 +69,7 @@
                 </label>
               </div>
 
-              {{ colorChecked }}
+              {{ task.color }}
             </div>
           </div>
           <div class="modal-footer d-block">
@@ -87,23 +87,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <form
-      class="form"
-      v-on:submit="onSubmit"
-      v-on:reset="onReset">
-      <div class="form-group mb-4">
-        <label for="newTodo" class="form-label">Add task name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="newTodo"
-          v-model="title">
-      </div>
-      <button type="submit" class="btn btn-primary me-4">Add</button>
-      <button type="reset" class="btn btn-danger">Reset</button>
-    </form> -->
-
   </div>
 </template>
 
@@ -117,14 +100,14 @@ export default {
       task: {
         title: '',
         note: '',
-        color: this.$store.state.colorChecked
+        color: ''
       },
       colors: this.$store.state.colors,
       colorChecked: this.$store.state.colorChecked
     }
   },
   methods: {
-    ...mapActions(['addTodo', 'fetchColorChecked']),
+    ...mapActions(['addTodo']),
     onSubmit (e) {
       e.preventDefault()
 
@@ -137,11 +120,6 @@ export default {
       this.task.title = ''
       this.task.note = ''
       this.task.color = this.$store.state.colorChecked
-    }
-  },
-  watch: {
-    colorChecked (value) {
-      this.fetchColorChecked(value)
     }
   }
 }
