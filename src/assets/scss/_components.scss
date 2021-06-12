@@ -408,3 +408,13 @@
   bottom: $grid-gutter-width * 2;
   left: $grid-gutter-width;
 }
+
+.colors {
+  .btn {
+    width: $colors-btn-size;
+    height: $colors-btn-size;
+    font-size: 0;
+    line-height: 0;
+    border-radius: $colors-btn-radius;
+  }
+}

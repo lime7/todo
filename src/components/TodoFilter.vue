@@ -8,8 +8,8 @@
         class="btn-check"
         type="radio"
         :id="option.value"
-        v-model="selected"
         :value="option.value"
+        v-model="selected"
         name="ItemTodosFilter">
       <div
         v-for="option in options"

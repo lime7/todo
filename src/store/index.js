@@ -9,7 +9,15 @@ export default createStore({
     limit: 3,
     selected: 'all',
     editedTodo: null,
-    searchTodo: ''
+    searchTodo: '',
+    colors: [
+      { value: 'blue', checked: true },
+      { value: 'pink', checked: false },
+      { value: 'orange', checked: false },
+      { value: 'red', checked: false }
+    ],
+    colorChecked: 'blue',
+    settings: false
   },
   getters: {
     getTodos (state) {
@@ -46,8 +54,14 @@ export default createStore({
 
       lS.save(state.todos || [])
     },
+    setSettings (state) {
+      state.settings = !state.settings
+    },
     setFilter (state, payload) {
       state.selected = payload
+    },
+    setColorChecked (state, payload) {
+      state.colorChecked = payload
     },
     setRemoveTodo (state, payload) {
       state.todos = state.todos.filter((todo) => todo.id !== payload)
@@ -59,7 +73,8 @@ export default createStore({
         id: state.limit + 1,
         title: payload.title,
         note: payload.note,
-        completed: false
+        completed: false,
+        color: payload.color
       }
 
       state.limit++
@@ -73,6 +88,9 @@ export default createStore({
     setSaveEditTodo (state, payload) {
       state.editedTodo.title = payload.title
       state.editedTodo.note = payload.note
+      state.editedTodo.color = payload.color
+
+      lS.save(state.todos || [])
     },
     setSearch (state, payload) {
       state.searchTodo = payload
@@ -95,8 +113,14 @@ export default createStore({
     async toggleStatus ({ commit }, todo) {
       this.commit('setStatus', todo)
     },
+    toggleSettings ({ commit }) {
+      this.commit('setSettings')
+    },
     fetchFilter ({ commit }, value) {
       this.commit('setFilter', value)
+    },
+    fetchColorChecked ({ commit }, value) {
+      this.commit('setColorChecked', value)
     },
     removeTodo ({ commit }, id) {
       this.commit('setRemoveTodo', id)
@@ -115,7 +139,7 @@ export default createStore({
     },
     clearTodos ({ commit }) {
       this.commit('setClearTodos')
-      lS.clear()
+      localStorage.clear()
     }
   },
   modules: {

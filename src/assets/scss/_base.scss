@@ -131,8 +131,169 @@ a[href*="tel:"] {
   }
 }
 
-.bg-primary {
-  @include gradient-bg($primary);
+
+.btn-blue {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $blue, 
+    $blue, 
+    $white, 
+    $blue-500, 
+    $blue-500,
+    $white,
+    $blue-500, 
+    $blue-500,
+    $white);
+  @include gradient-bg($blue);
+  @include gradient-y($blue-100, $blue-500);
+  box-shadow: 7px 7px 17px rgba($blue-300, 0.75);
+
+  &:hover {
+    @include gradient-bg($blue);
+    @include gradient-y($blue-100, $blue-500);
+    box-shadow: 7px 7px 17px rgba($blue-100, 0.15);
+  }
+
+  &:focus {
+    @include gradient-bg($blue);
+    @include gradient-y($blue-100, $blue-500);
+    box-shadow: none !important;
+  }
+
+  .btn-check:checked ~ & {
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.btn-orange {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $orange, 
+    $orange, 
+    $white, 
+    $orange-500, 
+    $orange-500,
+    $white,
+    $orange-500, 
+    $orange-500,
+    $white);
+  @include gradient-bg($orange);
+  @include gradient-y($orange-100, $orange-500);
+  box-shadow: 7px 7px 17px rgba($orange-300, 0.75);
+
+  &:hover {
+    @include gradient-bg($orange);
+    @include gradient-y($orange-100, $orange-500);
+    box-shadow: 7px 7px 17px rgba($orange-100, 0.15);
+  }
+
+  &:focus {
+    @include gradient-bg($orange);
+    @include gradient-y($orange-100, $orange-500);
+    box-shadow: none !important;
+  }
+
+  .btn-check:checked ~ & {
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.btn-pink {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $pink, 
+    $pink, 
+    $white, 
+    $pink-500, 
+    $pink-500,
+    $white,
+    $pink-500, 
+    $pink-500,
+    $white);
+  @include gradient-bg($pink);
+  @include gradient-y($pink-100, $pink-500);
+  box-shadow: 7px 7px 17px rgba($pink-300, 0.75);
+
+  &:hover {
+    @include gradient-bg($pink);
+    @include gradient-y($pink-100, $pink-500);
+    box-shadow: 7px 7px 17px rgba($pink-100, 0.15);
+  }
+
+  &:focus {
+    @include gradient-bg($pink);
+    @include gradient-y($pink-100, $pink-500);
+    box-shadow: none !important;
+  }
+
+  .btn-check:checked ~ & {
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.btn-red {
+  border: none;
+
+  /*button-variant($background, $border, $color, ... )*/
+  @include button-variant(
+    $red, 
+    $red, 
+    $white, 
+    $red-500, 
+    $red-500,
+    $white,
+    $red-500, 
+    $red-500,
+    $white);
+  @include gradient-bg($red);
+  @include gradient-y($red-100, $red-500);
+  box-shadow: 7px 7px 17px rgba($red-300, 0.75);
+
+  &:hover {
+    @include gradient-bg($red);
+    @include gradient-y($red-100, $red-500);
+    box-shadow: 7px 7px 17px rgba($red-100, 0.15);
+  }
+
+  &:focus {
+    @include gradient-bg($red);
+    @include gradient-y($red-100, $red-500);
+    box-shadow: none !important;
+  }
+
+  .btn-check:checked ~ & {
+    box-shadow: none !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+  }
+}
+
+.bg-blue {
+  @include gradient-bg($blue);
   @include gradient-y($blue-300, $blue-500);
   box-shadow: 7px 7px 17px rgba($blue-300, .75);
   transition: $bg-transition;
@@ -143,9 +304,64 @@ a[href*="tel:"] {
 
   &:active,
   &.active {
-    background: $primary;
+    background: $blue;
     box-shadow: none;
   }
+}
+
+.bg-orange {
+  @include gradient-bg($orange);
+  @include gradient-y($orange-300, $orange-500);
+  box-shadow: 7px 7px 17px rgba($orange-300, .75);
+  transition: $bg-transition;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    background: $orange;
+    box-shadow: none;
+  }
+}
+
+.bg-pink {
+  @include gradient-bg($pink);
+  @include gradient-y($pink-300, $pink-500);
+  box-shadow: 7px 7px 17px rgba($pink-300, .75);
+  transition: $bg-transition;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    background: $pink;
+    box-shadow: none;
+  }
+}
+
+.bg-red {
+  @include gradient-bg($red);
+  @include gradient-y($red-300, $red-500);
+  box-shadow: 7px 7px 17px rgba($red-300, .75);
+  transition: $bg-transition;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:active,
+  &.active {
+    background: $red;
+    box-shadow: none;
+  }
+}
+
+.btn-group {
+  display: flex;
 }
 
 .form-check {

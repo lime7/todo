@@ -48,6 +48,29 @@
                 placeholder="Text...">
               </textarea>
             </div>
+            <div
+              class="btn-group justify-content-between colors"
+              role="group"
+              aria-label="Colors radiobox toggle button group">
+              <div
+                v-for="color in colors"
+                :key="color.value">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  :id="color.value"
+                  :value="color.value"
+                  v-model="task.color"
+                  :checked="color.checked">
+                <label
+                  :class="'btn btn-' + color.value"
+                  :for="color.value">
+                    {{ color.value }}
+                </label>
+              </div>
+
+              {{ task.color }}
+            </div>
           </div>
           <div class="modal-footer d-block">
             <button
@@ -64,23 +87,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <form
-      class="form"
-      v-on:submit="onSubmit"
-      v-on:reset="onReset">
-      <div class="form-group mb-4">
-        <label for="newTodo" class="form-label">Add task name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="newTodo"
-          v-model="title">
-      </div>
-      <button type="submit" class="btn btn-primary me-4">Add</button>
-      <button type="reset" class="btn btn-danger">Reset</button>
-    </form> -->
-
   </div>
 </template>
 
@@ -93,8 +99,11 @@ export default {
     return {
       task: {
         title: '',
-        note: ''
-      }
+        note: '',
+        color: ''
+      },
+      colors: this.$store.state.colors,
+      colorChecked: this.$store.state.colorChecked
     }
   },
   methods: {
@@ -105,10 +114,12 @@ export default {
       this.addTodo(this.task)
       this.task.title = ''
       this.task.note = ''
+      this.task.color = this.$store.state.colorChecked
     },
     onReset () {
       this.task.title = ''
       this.task.note = ''
+      this.task.color = this.$store.state.colorChecked
     }
   }
 }
