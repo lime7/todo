@@ -56,8 +56,6 @@
                     {{ color.value }}
                 </label>
               </div>
-
-              {{ task.color }}
             </div>
           </div>
         </div>
