@@ -95,7 +95,7 @@ export default createStore({
     setSearch (state, payload) {
       state.searchTodo = payload
     },
-    setClearTodos (state, payload) {
+    setClearTodos (state) {
       state.todos = []
     }
   },
@@ -110,34 +110,34 @@ export default createStore({
     //       console.log(err)
     //     })
     // },
-    async toggleStatus ({ commit }, todo) {
+    async toggleStatus (todo) {
       this.commit('setStatus', todo)
     },
-    toggleSettings ({ commit }) {
+    toggleSettings () {
       this.commit('setSettings')
     },
-    fetchFilter ({ commit }, value) {
+    fetchFilter (value) {
       this.commit('setFilter', value)
     },
-    fetchColorChecked ({ commit }, value) {
+    fetchColorChecked (value) {
       this.commit('setColorChecked', value)
     },
-    removeTodo ({ commit }, id) {
+    removeTodo (id) {
       this.commit('setRemoveTodo', id)
     },
-    addTodo ({ commit }, payload) {
+    addTodo (payload) {
       this.commit('setAddTodo', payload)
     },
-    editTodo ({ commit }, todo) {
+    editTodo (todo) {
       this.commit('setEditTodo', todo)
     },
-    saveEditTodo ({ commit }, payload) {
+    saveEditTodo (payload) {
       this.commit('setSaveEditTodo', payload)
     },
-    fetchSearch ({ commit }, value) {
+    fetchSearch (value) {
       this.commit('setSearch', value)
     },
-    clearTodos ({ commit }) {
+    clearTodos () {
       this.commit('setClearTodos')
       localStorage.clear()
     }
